@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL Profile</title>
+</head>
+<body>
+
+    <h1>GraphQL Profile</h1>
+    <button onclick="fetchProfile()">Fetch Profile</button>
+    <div id="profile"></div>
+
+    <script>
+        async function fetchProfile() {
+            const token = localStorage.getItem("jwt"); // Retrieve token
+
+            if (!token) {
+                alert("Not logged in. Please log in first.");
+                return;
+            }
+
+            // Debugging: check token format
+            console.log("JWT Token:", token);
+
+            // ✅ Corrected GraphQL Query (no extra })
+            const query = `
+            {
+                user {
+                    id
+                    login
+                    xp
+                    auditRatio
+                    projects {
+                        name
+                        status
+                        xp
+                    }
+                    piscineStats {
+                        language
+                        passCount
+                        failCount
+                    }
+                    exercises {
+                        name
+                        attempts
+                    }
+                }
+            }`;
+
+            try {
+                const response = await fetch("https://learn.reboot01.com/api/graphql-engine/v1/graphql", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await response.json();
+                console.log("GraphQL Response:", data);
+
+                if (data.errors) {
+                    alert("GraphQL Error: " + JSON.stringify(data.errors));
+                    return;
+                }
+
+                const user = data.data.user[0];  // Assuming user is an array
+                alert("User ID: " + user.id + "\nLogin: " + user.login);
+
+                // Example to show in the div
+                const profileDiv = document.getElementById("profile");
+                profileDiv.innerHTML = `
+                    <p><strong>ID:</strong> ${user.id}</p>
+                    <p><strong>Login:</strong> ${user.login}</p>
+                    <p><strong>Total XP:</strong> ${user.xp}</p>
+                    <p><strong>Audit Ratio:</strong> ${user.auditRatio}</p>
+                `;
+
+            } catch (error) {
+                console.error("Network error:", error);
+                alert("Network error. Check console for details.");
+            }
+        }
+    </script>
+</body>
+</html>

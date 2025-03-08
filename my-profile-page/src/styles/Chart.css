@@ -1,0 +1,57 @@
+/* 📌 Chart Container */
+.chart-container {
+    background: var(--cardBackground);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    color: var(--textPrimary);
+    max-width: 900px;
+    margin: 30px auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 📌 Hover Effect */
+.chart-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 15px 30px rgba(90, 79, 207, 0.5);
+}
+
+/* 📌 Graph Title */
+.chart-container h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+/* 📌 Chart Background */
+.chart-container svg {
+    background: #171722;
+    border-radius: 12px;
+    padding: 10px;
+}
+/* 📌 Tooltip Box */
+/* 📌 Tooltip Box */
+.recharts-tooltip-wrapper {
+    background: rgba(255, 255, 255, 0.95) !important; /* Light Background */
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
+    color: #222 !important; /* Dark text for contrast */
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-align: center;
+}
+
+/* 📌 Tooltip Label (Date) */
+.recharts-tooltip-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #007BFF !important; /* Blue for better contrast */
+}
+
+/* 📌 Tooltip Value */
+.recharts-tooltip-item {
+    color: #333 !important; /* Dark Gray Text */
+}

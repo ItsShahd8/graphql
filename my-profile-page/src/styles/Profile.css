@@ -1,0 +1,139 @@
+/* 📌 General Profile Page */
+.profile-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e1e2e, #2a2a3c);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+/* 📌 Student Info Card */
+.student-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2c2c38;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.student-card:hover {
+    transform: scale(1.03);
+}
+
+.student-card .avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.student-card:hover .avatar {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.student-info h1 {
+    color: #00d4ff;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+.student-info p {
+    font-size: 1.1em;
+    color: #ccc;
+    margin: 5px 0;
+}
+
+/* 📌 XP & Project Summary */
+.xp-summary {
+    display: flex;
+    justify-content: space-around;
+    background: #292929;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.xp-card {
+    background: #1e1e2e;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 30%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.xp-card:hover {
+    transform: scale(1.05);
+}
+
+.xp-card h3 {
+    font-size: 1.2em;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.xp-card p {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #00ffcc;
+}
+
+.success p {
+    color: #4caf50;
+}
+
+.danger p {
+    color: #e53935;
+}
+
+/* 📌 Charts */
+.chart-container {
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 📌 Logout Button */
+.logout-button {
+    background: linear-gradient(135deg, #ff4d4f, #ff6b6b);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+}
+
+.logout-button:hover {
+    background: linear-gradient(135deg, #ff7875, #ff9999);
+    transform: scale(1.05);
+}
+
+/* 📌 Error & Loading States */
+.error-message {
+    color: #ff4d4f;
+    font-weight: bold;
+}
+
+.loading {
+    color: #00ffcc;
+    font-size: 1.2em;
+}

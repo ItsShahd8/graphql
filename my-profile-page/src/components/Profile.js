@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import XPChart from './XPChart'; // Create this file for the graph
+import XPChart from './XPChart';
+import XPBarChart from './XPBarChart';
+import { removeToken } from '../utils/auth';
+import '../styles/Profile.css';
 
 const GET_USER_INFO = gql`
     query {
         user {
             id
             login
+            email
+            firstName
+            lastName
             transactions(where: {type: {_eq: "xp"}}) {
                 amount
                 createdAt
@@ -26,75 +32,66 @@ function Profile() {
     const { data, loading, error } = useQuery(GET_USER_INFO);
 
     useEffect(() => {
-        if (error && (error.message.includes('unauthorized') || error.message.includes('JWT'))) {
-            localStorage.removeItem('jwt');
+        if (error && error.message.includes('unauthorized')) {
+            removeToken();
             navigate('/');
         }
     }, [error, navigate]);
 
-    if (loading) return <p>Loading your profile...</p>;
-    if (error) return <p>Error loading your profile: {error.message}</p>;
+    if (loading) return <div className="loading">Loading Profile...</div>;
+    if (error) return <div className="error-message">Error loading profile: {error.message}</div>;
 
     const user = data?.user?.[0];
+    if (!user) return <div className="error-message">No user data found.</div>;
 
-    if (!user) {
-        return <p>No user data found.</p>;
-    }
-
+    // Calculate total XP and project stats
+    const totalXP = user.transactions.reduce((sum, tx) => sum + tx.amount, 0);
     const passedProjects = user.progresses.filter(p => p.grade === 1).length;
     const failedProjects = user.progresses.filter(p => p.grade === 0).length;
 
-    const calculateSkills = (progresses) => {
-        const skills = {
-            "Frontend": 0,
-            "Backend": 0,
-            "Algorithms": 0,
-            "DevOps": 0
-        };
-
-        progresses.forEach(progress => {
-            if (progress.path.includes("js") || progress.path.includes("html")) {
-                skills.Frontend++;
-            } else if (progress.path.includes("node") || progress.path.includes("api")) {
-                skills.Backend++;
-            } else if (progress.path.includes("algo") || progress.path.includes("data")) {
-                skills.Algorithms++;
-            } else if (progress.path.includes("docker") || progress.path.includes("devops")) {
-                skills.DevOps++;
-            }
-        });
-
-        return skills;
-    };
-
-    const skills = calculateSkills(user.progresses);
-
     return (
         <div className="profile-container">
-            <h1>Welcome to Your Profile</h1>
-            <p><strong>User ID:</strong> {user.id}</p>
-            <p><strong>Login:</strong> {user.login}</p>
+            {/* Student Information Card */}
+            <div className="student-card">
+                <img 
+                    src={`https://robohash.org/${user.login}.png`} 
+                    alt="Student Avatar" 
+                    className="avatar"
+                />
+                <div className="student-info">
+                    <h1>{user.firstName} {user.lastName}</h1>
+                    <p><strong>Username:</strong> {user.login}</p>
+                    <p><strong>Email:</strong> {user.email}</p>
+                </div>
+            </div>
 
-            {/* XP Chart */}
+            {/* XP & Project Summary */}
+            <div className="xp-summary">
+                <div className="xp-card">
+                    <h3>Total XP</h3>
+                    <p>{totalXP} XP</p>
+                </div>
+                <div className="xp-card success">
+                    <h3>Projects Passed</h3>
+                    <p>{passedProjects}</p>
+                </div>
+                <div className="xp-card danger">
+                    <h3>Projects Failed</h3>
+                    <p>{failedProjects}</p>
+                </div>
+            </div>
+
+            {/* XP Charts */}
             <XPChart transactions={user.transactions} />
+            <XPBarChart />
 
-            {/* Grades */}
-            <h2>Project Grades Summary</h2>
-            <p>Total Passed Projects: {passedProjects}</p>
-            <p>Total Failed Projects: {failedProjects}</p>
-
-            {/* Skills */}
-            <h2>Skills Summary</h2>
-            <ul>
-                {Object.entries(skills).map(([skill, count]) => (
-                    <li key={skill}>{skill}: {count} projects</li>
-                ))}
-            </ul>
-
-            <button onClick={() => {
-                localStorage.removeItem('jwt');
-                navigate('/');
-            }}>Logout</button>
+            {/* Logout Button */}
+            <button className="logout-button" onClick={() => { 
+                removeToken(); 
+                navigate('/'); 
+            }}>
+                Logout
+            </button>
         </div>
     );
 }

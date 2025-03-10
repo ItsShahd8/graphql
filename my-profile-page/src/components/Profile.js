@@ -7,6 +7,7 @@ import { removeToken } from '../utils/auth';
 import '../styles/Profile.css';
 
 // GraphQL Query with Missing Data Included
+// Update the GraphQL query to match the correct XP calculation
 const GET_USER_INFO = gql`
     query {
         user {
@@ -16,10 +17,6 @@ const GET_USER_INFO = gql`
             firstName
             lastName
             auditRatio
-            transactions(where: {type: {_eq: "xp"}}) {
-                amount
-                createdAt
-            }
             progresses {
                 objectId
                 grade
@@ -29,9 +26,36 @@ const GET_USER_INFO = gql`
                     type
                 }
             }
+            transactions(
+                where: { 
+                    type: { _eq: "xp" }, 
+                    _or: [{ attrs: { _eq: {} } }, { attrs: { _has_key: "group" } }],
+                    _and: [
+                        { path: { _nlike: "%/piscine-js/%" } }, 
+                        { path: { _nlike: "%/piscine-go/%" } }
+                    ]
+                }
+            ) {
+                amount
+                createdAt
+                path
+            }
+        }
+        xp_aggregate: transaction_aggregate(
+            where: {
+                type: { _eq: "xp" }
+                event: { path: { _eq: "/bahrain/bh-module" } }
+            }
+        ) {
+            aggregate {
+                sum {
+                    amount
+                }
+            }
         }
     }
 `;
+
 
 function Profile() {
     const navigate = useNavigate();
@@ -52,9 +76,12 @@ function Profile() {
     if (!user) return <p>No user data found.</p>;
 
     // Calculate Total XP
-    const totalXP = user.transactions.reduce((sum, tx) => sum + tx.amount, 0);
-    const passedProjects = user.progresses.filter(p => p.grade === 1).length;
+    const totalXP = Math.round((data?.xp_aggregate?.aggregate?.sum?.amount || 0) / 1000);
+    const formattedXP = `${totalXP} kB`;
+       const passedProjects = user.progresses.filter(p => p.grade === 1).length;
     const failedProjects = user.progresses.filter(p => p.grade === 0).length;
+
+ 
 
     return (
         <div className="profile-container">
@@ -73,8 +100,8 @@ function Profile() {
             <div className="stats-container">
                 <div className="stats-box">
                     <h2>Total XP</h2>
-                    <p>{totalXP} XP</p>
-                </div>
+                    <p>{formattedXP}</p>
+                    </div>
                 <div className="stats-box">
                     <h2>Projects Passed</h2>
                     <p>{passedProjects}</p>

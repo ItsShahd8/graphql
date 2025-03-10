@@ -6,7 +6,8 @@
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
     text-align: center;
     color: var(--textPrimary);
-    max-width: 900px;
+    width: 100%;
+    max-width: 1100px;
     margin: 30px auto;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -30,28 +31,37 @@
     background: #171722;
     border-radius: 12px;
     padding: 10px;
+    width: 100%;
 }
-/* 📌 Tooltip Box */
+
 /* 📌 Tooltip Box */
 .recharts-tooltip-wrapper {
-    background: rgba(255, 255, 255, 0.95) !important; /* Light Background */
+    background: rgba(255, 255, 255, 0.95) !important;
     border-radius: 6px !important;
     padding: 8px 12px !important;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
-    color: #222 !important; /* Dark text for contrast */
+    color: #222 !important;
     font-size: 14px !important;
     font-weight: bold !important;
     text-align: center;
 }
 
-/* 📌 Tooltip Label (Date) */
+/* 📌 Tooltip Label */
 .recharts-tooltip-label {
     font-size: 14px;
     font-weight: bold;
-    color: #007BFF !important; /* Blue for better contrast */
+    color: #007BFF !important;
 }
 
 /* 📌 Tooltip Value */
 .recharts-tooltip-item {
-    color: #333 !important; /* Dark Gray Text */
+    color: #333 !important;
+}
+
+/* 📌 Responsive Fixes */
+@media (max-width: 768px) {
+    .chart-container {
+        width: 100%;
+        max-width: 95%;
+    }
 }

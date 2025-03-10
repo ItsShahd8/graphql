@@ -12,31 +12,44 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
-
-        const encodedCredentials = btoa(`${login}:${password}`);
-
+    
+        const encodedCredentials = `Basic ${btoa(`${login}:${password}`)}`;
+    
+        console.log("🚀 Attempting login with:");
+        console.log("🔑 Username:", login);
+        console.log("🔑 Password:", password);
+        console.log("🔑 Encoded Credentials:", encodedCredentials);
+    
         try {
             const response = await fetch('https://learn.reboot01.com/api/auth/signin', {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
-                    Authorization: `Basic ${encodedCredentials}`,
+                    'Authorization': encodedCredentials,
                     'Content-Type': 'application/json'
                 }
             });
-
+    
+            console.log("🔍 Response Status:", response.status);
+    
+            const responseText = await response.text();
+            console.log("📡 API Response:", responseText);
+    
             if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`Login failed: ${errorText}`);
+                throw new Error(`Login failed: ${responseText}`);
             }
-
-            const data = await response.json();
+    
+            const data = JSON.parse(responseText);
+            console.log("✅ Login Success! Token:", data);
+    
             saveToken(data);
             navigate('/profile');
         } catch (error) {
+            console.error("❌ Login Error:", error.message);
             setError(error.message);
         }
     };
-
+    
     return (
         <div className="login-container">
             <div className="login-card">

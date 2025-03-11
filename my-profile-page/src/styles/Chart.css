@@ -1,29 +1,30 @@
 /* 📌 Chart Container */
 .chart-container {
     background: var(--cardBackground);
-    padding: 30px;
+    padding: 25px; /* Reduced padding */
     border-radius: 16px;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
     text-align: center;
     color: var(--textPrimary);
     width: 100%;
     max-width: 1100px;
-    margin: 30px auto;
+    margin: 20px auto; /* Reduced margin */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden; /* Prevents content from expanding container */
 }
 
 /* 📌 Hover Effect */
 .chart-container:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 15px 30px rgba(90, 79, 207, 0.5);
+    transform: scale(1.02); /* Slightly reduced hover scale */
+    box-shadow: 0px 12px 25px rgba(136, 61, 255, 0.4);
 }
 
 /* 📌 Graph Title */
 .chart-container h3 {
-    font-size: 22px;
+    font-size: 20px; /* Slightly smaller title */
     font-weight: bold;
-    color: var(--primary);
-    margin-bottom: 12px;
+    color: #b49bff;
+    margin-bottom: 10px; /* Reduced spacing */
 }
 
 /* 📌 Chart Background */
@@ -32,13 +33,15 @@
     border-radius: 12px;
     padding: 10px;
     width: 100%;
+    max-width: 100%; /* Ensures SVG does not exceed the container */
+    overflow: hidden;
 }
 
 /* 📌 Tooltip Box */
 .recharts-tooltip-wrapper {
     background: rgba(255, 255, 255, 0.95) !important;
     border-radius: 6px !important;
-    padding: 8px 12px !important;
+    padding: 6px 10px !important; /* Reduced padding */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
     color: #222 !important;
     font-size: 14px !important;
@@ -48,9 +51,9 @@
 
 /* 📌 Tooltip Label */
 .recharts-tooltip-label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
-    color: #007BFF !important;
+    color: #b49bff !important;
 }
 
 /* 📌 Tooltip Value */
@@ -63,5 +66,16 @@
     .chart-container {
         width: 100%;
         max-width: 95%;
+        margin: 15px auto; /* Adjusted margin for mobile */
+        padding: 20px; /* Reduced padding for better fit */
+    }
+
+    .chart-container h3 {
+        font-size: 18px;
+    }
+
+    .recharts-tooltip-wrapper {
+        font-size: 12px !important;
+        padding: 4px 8px !important;
     }
 }

@@ -1,0 +1,61 @@
+.audit-ratio-container {
+    background: #181818;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.audit-ratio-container h2 {
+    font-size: 18px;
+    color: #b49bff;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.audit-bars {
+    margin: 10px 0;
+}
+
+.bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.progress {
+    flex-grow: 1;
+    height: 8px;
+    margin: 0 10px;
+    border-radius: 4px;
+}
+
+.white {
+    background: white;
+    width: 80%;
+}
+
+.orange {
+    background: #ff9c00;
+    width: 85%;
+}
+
+.audit-score h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #b49bff;
+}
+
+.positive {
+    color: lightgreen;
+}
+
+.negative {
+    color: #ff9c00;
+}

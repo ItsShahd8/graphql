@@ -4,14 +4,14 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1A1A2E, #222240);
+    background-color: #121212;
 }
 
 /* 📌 Login Card */
 .login-card {
-    background: rgba(40, 40, 60, 0.95); /* Dark Glass Effect */
+    background: rgba(40, 40, 60, 0.95);
     backdrop-filter: blur(10px);
-    padding: 35px;
+    padding: 40px;
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     width: 360px;
@@ -28,26 +28,26 @@
 
 /* 📌 Login Title */
 .login-card h2 {
-    font-size: 24px;
-    color: #00D4FF;
+    font-size: 26px;
+    color: #b49bff;
     margin-bottom: 20px;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* 📌 Input Fields */
 input {
-    width: calc(100% - 24px); /* Fix alignment */
+    width: calc(100% - 24px);
     padding: 14px;
-    margin: 12px auto; /* Fixes spacing */
+    margin: 12px auto;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.15);
     color: white;
     display: block;
-    box-sizing: border-box; /* Prevents weird box behavior */
-    text-align: left; /* Ensure text is properly aligned */
+    box-sizing: border-box;
+    text-align: left;
 }
 
 /* 📌 Input Placeholder */
@@ -58,29 +58,29 @@ input::placeholder {
 /* 📌 Input Focus Effect */
 input:focus {
     outline: none;
-    border: 2px solid #00D4FF;
-    box-shadow: 0px 0px 8px rgba(0, 212, 255, 0.5);
+    border: 2px solid #b49bff;
+    box-shadow: 0px 0px 8px rgba(180, 155, 255, 0.5);
 }
 
 /* 📌 Login Button */
 .login-button {
-    background: linear-gradient(135deg, #00D4FF, #007BFF);
+    background: linear-gradient(135deg, #b49bff, #7f5fff);
     color: white;
     padding: 14px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     width: 100%;
-    margin-top: 20px; /* Fix spacing */
+    margin-top: 20px;
     transition: all 0.3s ease-in-out;
     display: block;
 }
 
 /* 📌 Login Button Hover */
 .login-button:hover {
-    background: linear-gradient(135deg, #009EFF, #005BBB);
+    background: linear-gradient(135deg, #8c61ff, #5e3aff);
     transform: scale(1.05);
 }
 
@@ -88,23 +88,23 @@ input:focus {
 .error {
     color: #FF4D4F;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* 📌 Fixes for Mobile Screens */
 @media (max-width: 400px) {
     .login-card {
         width: 90%;
-        padding: 25px;
+        padding: 30px;
     }
 
     input {
-        font-size: 14px;
+        font-size: 15px;
         padding: 12px;
     }
 
     .login-button {
-        font-size: 14px;
+        font-size: 16px;
         padding: 12px;
     }
 }

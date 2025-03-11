@@ -1,62 +1,163 @@
-/* 📌 Profile Page Container */
-.profile-container {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1e1e2e, #2c2c38);
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 40px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+/* ✅ Global Font Fix */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    background-color: #121212;
     color: white;
-    transition: all 0.3s ease-in-out;
+    font-family: 'Poppins', sans-serif; /* More modern & readable */
 }
 
-.profile-container:hover {
-    transform: scale(1.02);
-}
-
-/* 📌 Headings */
-h1 {
+/* 📌 Fullscreen Profile Layout */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
     text-align: center;
-    color: #00d4ff;
-    margin-bottom: 30px;
-    font-size: 2.4em;
+    max-width: 100vw; /* Ensures no extra width */
+}
+
+/* 📌 Student Information Card */
+.student-card {
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* 📌 Profile Picture */
+.profile-image {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    border: 3px solid #b49bff;
+}
+
+/* 📌 Student Name */
+.student-card h1 {
+    font-size: 26px;
+    color: #b49bff;
+    font-weight: 600;
+}
+
+/* 📌 Student Info */
+.student-info p {
+    font-size: 16px;
+    margin: 6px 0;
+    font-weight: 400;
+}
+
+/* 📌 Stats Grid (XP & Audit Ratio) */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* 📌 Stats Boxes */
+.stats-box {
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    width: 45%;
+    min-width: 250px;
+    max-width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 📌 XP & Audit Titles */
+.stats-box h2 {
+    font-size: 18px;
+    color: #b49bff;
+    font-weight: 500;
+}
+
+/* 📌 XP & Audit Values */
+.stats-box p {
+    font-size: 24px;
     font-weight: bold;
+    color: white;
 }
 
-h2 {
-    font-size: 22px;
-    color: #ddd;
-    margin: 20px 0;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 6px;
+/* 📌 Audit Ratio Styling */
+.audit-bars {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
 }
 
-/* 📌 XP Summary */
-p {
-    font-size: 1.2rem;
-    color: #ccc;
-    margin: 10px 0;
+/* 📌 Progress Bar Fix */
+.audit-bars .progress {
+    flex-grow: 1;
+    height: 8px;
+    border-radius: 4px;
+}
+
+/* 📌 Color Fix for Audit Ratio */
+.audit-bars .done-bar {
+    background: #b49bff; /* Light purple */
+}
+
+.audit-bars .received-bar {
+    background: #6e85d3; /* Soft blue */
+}
+
+/* 📌 SVG Graphs */
+.svg-chart {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin-top: 20px;
 }
 
 /* 📌 Logout Button */
 .logout-button {
-    background: linear-gradient(135deg, #ff4d4f, #ff6b6b);
+    margin-top: 20px;
+    padding: 14px 24px;
+    background-color: #b49bff;
     color: white;
     border: none;
-    padding: 16px 24px;
-    font-size: 1rem;
-    border-radius: 10px;
+    border-radius: 8px;
+    font-size: 18px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: block;
-    width: 100%;
-    max-width: 250px;
-    margin: 25px auto;
-    text-align: center;
+    transition: 0.3s ease;
+    font-weight: bold;
 }
 
 .logout-button:hover {
-    background: linear-gradient(135deg, #ff7875, #ff9999);
-    transform: scale(1.08);
+    background-color: #8c7ae6;
+}
+
+/* 📌 Mobile Responsive Fixes */
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats-box {
+        width: 100%;
+    }
+
+    .student-card {
+        width: 100%;
+    }
 }

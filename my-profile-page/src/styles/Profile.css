@@ -1,123 +1,163 @@
-/* 📌 Profile Page Fullscreen Layout */
-.profile-container {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #181818, #2c2c38);
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 40px 5%;
-    color: white;
-    text-align: center;
-}
-
-/* 📌 Student Card - Centered & Full Width */
-.student-card {
-    display: flex;
-    align-items: center;
-    background: #252525;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    margin-bottom: 20px;
-    flex-direction: column;
-    text-align: center;
+/* 📌 Global Layout Fix */
+html, body {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    max-width: 600px;
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    background-color: #121212;
+    color: white;
+    font-family: 'Inter', sans-serif;
 }
 
-/* 📌 Avatar */
-.avatar {
+/* 📌 Fullscreen Profile Layout */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    max-width: 100vw; /* Ensures no extra width */
+}
+
+/* 📌 Student Information Card */
+.student-card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* 📌 Profile Picture */
+.profile-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 4px solid #00d4ff;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    border: 3px solid #b49bff;
 }
 
-/* 📌 Stats Container */
+/* 📌 Student Name */
+.student-card h1 {
+    font-size: 24px;
+    color: #b49bff;
+    margin-bottom: 5px;
+}
+
+/* 📌 Student Info */
+.student-info p {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+/* 📌 Stats Grid (XP & Audit Ratio) */
 .stats-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 1100px;
-    margin-top: 20px;
-    gap: 15px;
+    justify-content: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 800px;
+    margin-top: 10px;
 }
 
-/* 📌 Stats Box */
+/* 📌 Stats Boxes */
 .stats-box {
-    background: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    flex: 1;
-    min-width: 200px;
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 12px;
     text-align: center;
-    font-size: 18px;
-    color: #00d4ff;
-    font-weight: bold;
-    transition: transform 0.3s;
+    width: 45%;
+    min-width: 250px;
+    max-width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.stats-box:hover {
-    transform: scale(1.05);
+/* 📌 XP & Audit Titles */
+.stats-box h2 {
+    font-size: 18px;
+    color: #b49bff;
+    margin-bottom: 8px;
+}
+
+/* 📌 XP & Audit Values */
+.stats-box p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* 📌 Audit Ratio Styling */
+.audit-bars {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+/* 📌 Progress Bar Fix */
+.audit-bars .progress {
+    flex-grow: 1;
+    height: 8px;
+    border-radius: 4px;
+}
+
+/* 📌 Color Fix for Audit Ratio */
+.audit-bars .done-bar {
+    background: #b49bff; /* Light purple */
+}
+
+.audit-bars .received-bar {
+    background: #6e85d3; /* Soft blue */
+}
+
+/* 📌 SVG Graphs */
+.svg-chart {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin-top: 20px;
 }
 
 /* 📌 Logout Button */
 .logout-button {
-    background: linear-gradient(135deg, #ff4d4f, #ff6b6b);
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #b49bff;
     color: white;
     border: none;
-    padding: 16px 24px;
-    font-size: 1rem;
-    border-radius: 10px;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: block;
-    width: 100%;
-    max-width: 250px;
-    margin: 25px auto;
-    text-align: center;
+    transition: 0.3s ease;
+    font-weight: bold;
 }
 
 .logout-button:hover {
-    background: linear-gradient(135deg, #ff7875, #ff9999);
-    transform: scale(1.08);
+    background-color: #8c7ae6;
 }
 
-/* 📌 Responsive Fixes */
+/* 📌 Mobile Responsive Fixes */
 @media (max-width: 768px) {
-    .profile-container {
-        padding: 20px;
-        justify-content: flex-start;
-    }
-    
     .stats-container {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .stats-box {
         width: 100%;
-        max-width: 280px;
-        margin-bottom: 10px;
     }
-    
+
     .student-card {
-        padding: 20px;
-    }
-    
-    .avatar {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .chart-container {
         width: 100%;
-        max-width: 95%;
     }
 }

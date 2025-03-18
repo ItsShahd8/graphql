@@ -46,15 +46,24 @@ const GET_USER_INFO = gql`
         }
     }
 `;
+function formatBytes(bytes) {
+    let units = ["B", "kB", "MB", "GB", "TB"];
+    if (bytes === 0) return "0 B";
+
+    let exponent = Math.floor(Math.log(bytes) / Math.log(1000));
+    let value = Math.round(bytes / Math.pow(1000, exponent)); // Rounds to whole number
+
+    return `${value} ${units[exponent]}`;
+}
 
 function Profile() {
     const navigate = useNavigate();
     const { data, loading, error } = useQuery(GET_USER_INFO);
 
     useEffect(() => {
-        if (error && error.message.includes('unauthorized')) {
+        if (error && error.message.includes("unauthorized")) {
             removeToken();
-            navigate('/');
+            navigate("/");
         }
     }, [error, navigate]);
 
@@ -62,28 +71,39 @@ function Profile() {
     if (error) return <p>Error loading profile: {error.message}</p>;
 
     const user = data?.user?.[0];
-
     if (!user) return <p>No user data found.</p>;
 
-    // Calculate Total XP
-    const totalXP = Math.round((data?.xp_aggregate?.aggregate?.sum?.amount || 0) / 1000);
-    const formattedXP = `${totalXP} kB`;
+    // Get raw XP amount
+    let rawXP = data?.xp_aggregate?.aggregate?.sum?.amount || 0;
+
+    // Debugging output
+    console.log("🔹 Raw XP before formatting:", rawXP);
 
     return (
         <div className="profile-container">
             {/* 🔹 Student Information Card */}
             <div className="student-card">
-                <img src={`https://robohash.org/${user.login}.png`} alt="Profile" className="profile-image" />
-                <h1>{user.firstName} {user.lastName}</h1>
-                <p><strong>Username:</strong> {user.login}</p>
-                <p><strong>Email:</strong> {user.email}</p>
+                <img
+                    src={`https://robohash.org/${user.login}.png`}
+                    alt="Profile"
+                    className="profile-image"
+                />
+                <h1>
+                    {user.firstName} {user.lastName}
+                </h1>
+                <p>
+                    <strong>Username:</strong> {user.login}
+                </p>
+                <p>
+                    <strong>Email:</strong> {user.email}
+                </p>
             </div>
 
-            {/* 🔹 Stats Wrapper (XP Total & Audit Ratio behind each other) */}
+            {/* 🔹 Stats Wrapper (XP Total & Audit Ratio side by side) */}
             <div className="stats-wrapper">
                 <div className="stats-box">
                     <h2>Total XP</h2>
-                    <p>{formattedXP}</p>
+                    <p>{formatBytes(rawXP)}</p>
                 </div>
                 <div className="audit-box">
                     <AuditRatio auditRatio={user.auditRatio} />
@@ -99,7 +119,13 @@ function Profile() {
             </div>
 
             {/* 🔹 Logout Button */}
-            <button className="logout-button" onClick={() => { removeToken(); navigate('/'); }}>
+            <button
+                className="logout-button"
+                onClick={() => {
+                    removeToken();
+                    navigate("/");
+                }}
+            >
                 Logout
             </button>
         </div>

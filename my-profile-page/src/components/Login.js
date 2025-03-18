@@ -10,45 +10,43 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-        setError('');
+      e.preventDefault();
+      setError('');
     
-        const encodedCredentials = `Basic ${btoa(`${login}:${password}`)}`;
+      // Clearly fix this line exactly:
+      const credentials = `${login.trim()}:${password.trim()}`; // <-- `.trim()` removes extra spaces
+      const encodedCredentials = `Basic ${btoa(credentials)}`;
     
-        console.log("🚀 Attempting login with:");
-        console.log("🔑 Username:", login);
-        console.log("🔑 Password:", password);
-        console.log("🔑 Encoded Credentials:", encodedCredentials);
+      console.log("🔍 Sending credentials:", credentials);
+      console.log("🔍 Encoded (Base64):", encodedCredentials);
     
-        try {
-            const response = await fetch('https://learn.reboot01.com/api/auth/signin', {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Authorization': encodedCredentials,
-                    'Content-Type': 'application/json'
-                }
-            });
+      try {
+        const response = await fetch('https://learn.reboot01.com/api/auth/signin', {
+          method: 'POST',
+          headers: {
+            'Authorization': encodedCredentials,
+          },
+        });
     
-            console.log("🔍 Response Status:", response.status);
+        const responseText = await response.text();
     
-            const responseText = await response.text();
-            console.log("📡 API Response:", responseText);
-    
-            if (!response.ok) {
-                throw new Error(`Login failed: ${responseText}`);
-            }
-    
-            const data = JSON.parse(responseText);
-            console.log("✅ Login Success! Token:", data);
-    
-            saveToken(data);
-            navigate('/profile');
-        } catch (error) {
-            console.error("❌ Login Error:", error.message);
-            setError(error.message);
+        if (!response.ok) {
+          throw new Error(`Login failed: ${responseText}`);
         }
+    
+        const token = responseText.replace(/"/g, '');
+        saveToken(token);
+        navigate('/profile');
+    
+      } catch (error) {
+        setError(error.message);
+      }
     };
+    
+    
+  
+  
+      
     
     return (
         <div className="login-container">

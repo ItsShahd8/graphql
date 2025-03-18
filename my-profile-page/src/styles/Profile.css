@@ -1,24 +1,39 @@
-/* 📌 Global Layout Fix */
+/* 
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* Prevents horizontal scrolling */
+    overflow-x: hidden; 
     background-color: #121212;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+} */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; 
+    background-color: #ffffff;
     color: white;
     font-family: 'Inter', sans-serif;
 }
 
-/* 📌 Fullscreen Profile Layout */
 .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 30px;
     width: 100%;
+    max-width: 800px; /* Adjust max-width */
     text-align: center;
-    max-width: 100vw; /* Ensures no extra width */
+    margin: auto; /* Ensures centering */
 }
 
 /* 📌 Student Information Card */
@@ -26,10 +41,13 @@ html, body {
     background: #1e1e1e;
     padding: 20px;
     border-radius: 12px;
-    width: 90%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 500px; /* Ensure proper centering */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
 }
 
 /* 📌 Profile Picture */
@@ -54,15 +72,15 @@ html, body {
     margin: 5px 0;
 }
 
-/* 📌 Stats Grid (XP & Audit Ratio) */
+/* 📌 Stats Grid */
 .stats-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: auto; /* Ensure centering */
 }
 
 /* 📌 Stats Boxes */
@@ -71,9 +89,8 @@ html, body {
     padding: 25px;
     border-radius: 12px;
     text-align: center;
-    width: 45%;
-    min-width: 250px;
-    max-width: 350px;
+    width: 100%;
+    max-width: 250px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -97,7 +114,9 @@ html, body {
 /* 📌 Audit Ratio Styling */
 .audit-bars {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center alignment */
     gap: 10px;
     width: 100%;
     max-width: 400px;
@@ -105,19 +124,27 @@ html, body {
 }
 
 /* 📌 Progress Bar Fix */
-.audit-bars .progress {
-    flex-grow: 1;
-    height: 8px;
-    border-radius: 4px;
+.audit-bars .progress-container {
+    width: 100%;
+    max-width: 350px;
+    background: #333;
+    height: 12px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* 📌 Color Fix for Audit Ratio */
-.audit-bars .done-bar {
-    background: #b49bff; /* Light purple */
+.progress {
+    height: 100%;
+    border-radius: 10px;
 }
 
-.audit-bars .received-bar {
-    background: #6e85d3; /* Soft blue */
+.done-bar {
+    background: linear-gradient(90deg, #b49bff, #6a0572);
+}
+
+.received-bar {
+    background: linear-gradient(90deg, #6e85d3, #4158d0);
 }
 
 /* 📌 SVG Graphs */
@@ -158,6 +185,17 @@ html, body {
     }
 
     .student-card {
-        width: 100%;
+        width: 90%;
+    }
+
+    .profile-container {
+        padding: 20px;
     }
 }
+
+
+
+
+
+
+

@@ -44,15 +44,19 @@ function AuditRatio() {
         <div className="audit-ratio-container">
             <h2>Audits Ratio</h2>
             <div className="audit-bars">
-                <div className="bar done">
-                    <span>Done</span>
-                    <div className="progress white" style={{ width: `${donePercentage}%` }}></div>
-                    <span>{formatBytes(done)} ↑</span>
+                <div className="bar-container">
+                    <span className="label">Done</span>
+                    <div className="progress-container">
+                        <div className="progress done-bar" style={{ width: `${donePercentage}%` }}></div>
+                    </div>
+                    <span className="value">{formatBytes(done)} ↑</span>
                 </div>
-                <div className="bar received">
-                    <span>Received</span>
-                    <div className="progress orange" style={{ width: `${receivedPercentage}%` }}></div>
-                    <span>{formatBytes(received)} ↓</span>
+                <div className="bar-container">
+                    <span className="label">Received</span>
+                    <div className="progress-container">
+                        <div className="progress received-bar" style={{ width: `${receivedPercentage}%` }}></div>
+                    </div>
+                    <span className="value">{formatBytes(received)} ↓</span>
                 </div>
             </div>
             <div className="audit-score">

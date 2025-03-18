@@ -1,64 +1,107 @@
-/* 📌 Audit Ratio Container */
-.audit-container {
-    background: #181818;
-    padding: 20px;
+/* 📌 Audit Ratio Card - More Structured & Clean */
+.audit-ratio-container {
+    background: #1b1b1b;
+    padding: 25px;
     border-radius: 12px;
     text-align: center;
     color: white;
     width: 100%;
-    max-width: 400px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 420px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+    margin: 20px auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 📌 Audit Title */
-.audit-container h2 {
-    font-size: 18px;
+/* 📌 Title Styling */
+.audit-ratio-container h2 {
+    font-size: 20px;
     color: #b49bff;
     font-weight: 600;
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
-/* 📌 Audit Bars */
+/* 📌 Bars Wrapper - Better Spacing */
 .audit-bars {
-    margin: 10px 0;
-}
-
-/* 📌 Progress Bar */
-.bar {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* 📌 Individual Bar Container */
+.bar-container {
+    display: flex;
     align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+/* 📌 Labels & Values */
+.label {
     font-size: 14px;
-    margin-bottom: 8px;
+    font-weight: 600;
+    width: 80px;
+    text-align: right;
 }
 
+.value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #bdbdbd;
+    width: 80px;
+    text-align: left;
+}
+
+/* 📌 Progress Bar Container */
+.progress-container {
+    flex: 1;
+    height: 12px;
+    background: #2d2d2d;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 📌 Smooth Progress Bars */
 .progress {
-    flex-grow: 1;
-    height: 8px;
-    margin: 0 10px;
-    border-radius: 4px;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
 }
 
-/* ✅ Colors Fix */
-.white {
-    background: #b49bff;
-    width: 80%;
+/* ✅ Updated Colors */
+.done-bar {
+    background: linear-gradient(90deg, #a06cd5, #6a0572);
 }
 
-.orange {
-    background: #ff9c00;
-    width: 85%;
+.received-bar {
+    background: linear-gradient(90deg, #6e85d3, #4158d0);
 }
 
-/* 📌 Audit Score */
+/* 📌 Audit Score Section */
+.audit-score {
+    margin-top: 10px;
+    text-align: center;
+}
+
 .audit-score h1 {
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 700;
-    margin: 10px 0;
     color: #b49bff;
 }
 
-/* 📌 Positive / Negative Text */
+.audit-score p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* ✅ Positive & Negative Messages */
 .positive {
     color: lightgreen;
 }

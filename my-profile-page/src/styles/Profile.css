@@ -1,201 +1,188 @@
-/* 
+/* 🌙 Dark Theme for a Sleek Look */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; 
-    background-color: #121212;
+    overflow-x: hidden;
+    background-color: #181818;
     color: white;
     font-family: 'Inter', sans-serif;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-} */
-
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden; 
-    background-color: #ffffff;
-    color: white;
-    font-family: 'Inter', sans-serif;
+    display: block;
 }
 
+/* 📌 Centered Profile Container */
 .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 40px 20px;
     width: 100%;
-    max-width: 800px; /* Adjust max-width */
+    max-width: 900px;
     text-align: center;
-    margin: auto; /* Ensures centering */
+    margin: auto;
 }
 
 /* 📌 Student Information Card */
 .student-card {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 12px;
+    background: #222;
+    padding: 25px;
+    border-radius: 15px;
     width: 100%;
-    max-width: 500px; /* Ensure proper centering */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 20px;
+    max-width: 500px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+    margin-bottom: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content */
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
 }
 
 /* 📌 Profile Picture */
 .profile-image {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    margin-bottom: 10px;
-    border: 3px solid #b49bff;
+    margin-bottom: 15px;
+    border: 4px solid #b49bff;
 }
 
 /* 📌 Student Name */
 .student-card h1 {
-    font-size: 24px;
+    font-size: 26px;
+    color: #b49bff;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* 📌 Stats Wrapper */
+.stats-wrapper {
+    display: flex;
+    justify-content: center; /* Center the elements */
+    align-items: stretch; /* Make both boxes the same height */
+    gap: 15px; /* Space between XP and Audit Ratio */
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* 📌 XP Total Box */
+.stats-box {
+    width: 200px; /* Reduced width */
+    background: #222;
+    padding: 15px; /* Smaller padding */
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 📌 XP Text Styling */
+.stats-box h2 {
+    font-size: 18px;
+    font-weight: bold;
     color: #b49bff;
     margin-bottom: 5px;
 }
 
-/* 📌 Student Info */
-.student-info p {
-    font-size: 15px;
-    margin: 5px 0;
+.stats-box p {
+    font-size: 16px;
+    font-weight: normal;
+    color: white;
 }
 
-/* 📌 Stats Grid */
-.stats-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 500px;
-    margin: auto; /* Ensure centering */
-}
-
-/* 📌 Stats Boxes */
-.stats-box {
-    background: #1e1e1e;
+/* 📌 Audit Ratio Box */
+.audit-box {
+    flex: 1; /* Make audit box take equal space */
+    background: #222;
     padding: 25px;
     border-radius: 12px;
     text-align: center;
-    width: 100%;
-    max-width: 250px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
 }
 
-/* 📌 XP & Audit Titles */
-.stats-box h2 {
-    font-size: 18px;
-    color: #b49bff;
-    margin-bottom: 8px;
-}
-
-/* 📌 XP & Audit Values */
-.stats-box p {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-/* 📌 Audit Ratio Styling */
-.audit-bars {
+/* 📌 Audit Ratio Section */
+.audit-ratio-container {
+    background: #1b1b1b;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center alignment */
-    gap: 10px;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-}
-
-/* 📌 Progress Bar Fix */
-.audit-bars .progress-container {
-    width: 100%;
-    max-width: 350px;
-    background: #333;
-    height: 12px;
-    border-radius: 10px;
     position: relative;
-    overflow: hidden;
 }
 
-.progress {
-    height: 100%;
-    border-radius: 10px;
+/* 📌 Audit Ratio Text */
+.audit-ratio-container h2 {
+    font-size: 20px;
+    color: #b49bff;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
-.done-bar {
-    background: linear-gradient(90deg, #b49bff, #6a0572);
+.audit-score h1 {
+    font-size: 45px;
+    font-weight: 700;
+    color: #b49bff;
 }
 
-.received-bar {
-    background: linear-gradient(90deg, #6e85d3, #4158d0);
-}
-
-/* 📌 SVG Graphs */
-.svg-chart {
-    width: 100%;
-    max-width: 700px;
-    height: auto;
-    margin-top: 20px;
+.audit-score p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #b49bff;
 }
 
 /* 📌 Logout Button */
 .logout-button {
-    margin-top: 20px;
-    padding: 12px 24px;
+    margin-top: 25px;
+    padding: 14px 26px;
     background-color: #b49bff;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: 0.3s ease-in-out;
     font-weight: bold;
 }
 
 .logout-button:hover {
     background-color: #8c7ae6;
+    transform: scale(1.05);
 }
 
-/* 📌 Mobile Responsive Fixes */
+/* 📌 Mobile Responsive */
 @media (max-width: 768px) {
-    .stats-container {
+    .stats-wrapper {
         flex-direction: column;
         align-items: center;
     }
-
-    .stats-box {
+    .stats-box, .audit-box {
         width: 100%;
+        max-width: 300px;
     }
 
     .student-card {
         width: 90%;
     }
-
     .profile-container {
         padding: 20px;
     }
 }
-
-
-
-
-
-
-

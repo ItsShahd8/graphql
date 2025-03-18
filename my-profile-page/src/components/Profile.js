@@ -79,13 +79,13 @@ function Profile() {
                 <p><strong>Email:</strong> {user.email}</p>
             </div>
 
-            {/* 🔹 Stats Grid (XP & Audit Ratio) */}
-            <div className="stats-container">
+            {/* 🔹 Stats Wrapper (XP Total & Audit Ratio behind each other) */}
+            <div className="stats-wrapper">
                 <div className="stats-box">
                     <h2>Total XP</h2>
                     <p>{formattedXP}</p>
                 </div>
-                <div className="stats-box audit-box">
+                <div className="audit-box">
                     <AuditRatio auditRatio={user.auditRatio} />
                 </div>
             </div>

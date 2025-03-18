@@ -1,4 +1,3 @@
-/* 📌 Audit Ratio Card - More Structured & Clean */
 .audit-ratio-container {
     background: #1b1b1b;
     padding: 25px;
@@ -15,7 +14,6 @@
     align-items: center;
 }
 
-/* 📌 Title Styling */
 .audit-ratio-container h2 {
     font-size: 20px;
     color: #b49bff;
@@ -24,7 +22,6 @@
     text-transform: uppercase;
 }
 
-/* 📌 Bars Wrapper - Better Spacing */
 .audit-bars {
     width: 100%;
     display: flex;
@@ -33,7 +30,6 @@
     margin-bottom: 15px;
 }
 
-/* 📌 Individual Bar Container */
 .bar-container {
     display: flex;
     align-items: center;
@@ -41,7 +37,6 @@
     gap: 12px;
 }
 
-/* 📌 Labels & Values */
 .label {
     font-size: 14px;
     font-weight: 600;
@@ -57,7 +52,6 @@
     text-align: left;
 }
 
-/* 📌 Progress Bar Container */
 .progress-container {
     flex: 1;
     height: 12px;
@@ -67,14 +61,12 @@
     position: relative;
 }
 
-/* 📌 Smooth Progress Bars */
 .progress {
     height: 100%;
     border-radius: 10px;
     transition: width 0.5s ease-in-out;
 }
 
-/* ✅ Updated Colors */
 .done-bar {
     background: linear-gradient(90deg, #a06cd5, #6a0572);
 }
@@ -83,7 +75,6 @@
     background: linear-gradient(90deg, #6e85d3, #4158d0);
 }
 
-/* 📌 Audit Score Section */
 .audit-score {
     margin-top: 10px;
     text-align: center;
@@ -101,11 +92,10 @@
     margin-top: 5px;
 }
 
-/* ✅ Positive & Negative Messages */
 .positive {
     color: lightgreen;
 }
 
 .negative {
     color: #ff9c00;
-}
+} 

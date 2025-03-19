@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import XPChart from './XPChart';
 import XPBarChart from './XPBarChart';
 import AuditRatio from './AuditRatio';
-import { removeToken } from '../utils/auth';
+import { getToken, removeToken } from '../utils/auth';
 import '../styles/Profile.css';
 
 // GraphQL Query
@@ -46,6 +46,8 @@ const GET_USER_INFO = gql`
         }
     }
 `;
+
+// ✅ Keep your old XP formatting function
 function formatBytes(bytes) {
     let units = ["B", "kB", "MB", "GB", "TB"];
     if (bytes === 0) return "0 B";
@@ -58,22 +60,28 @@ function formatBytes(bytes) {
 
 function Profile() {
     const navigate = useNavigate();
-    const { data, loading, error } = useQuery(GET_USER_INFO);
+    const token = getToken();
 
+    // 🚀 Redirect to `/login` if no token is found
     useEffect(() => {
-        if (error && error.message.includes("unauthorized")) {
-            removeToken();
+        if (!token) {
+            console.log("🔴 No token found, redirecting to login...");
             navigate("/");
         }
-    }, [error, navigate]);
+    }, [navigate]);
 
+    const { data, loading, error } = useQuery(GET_USER_INFO, {
+        skip: !token, // ✅ Prevents GraphQL query if user is not logged in
+    });
+
+    if (!token) return <p>Please log in.</p>;
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error loading profile: {error.message}</p>;
 
     const user = data?.user?.[0];
     if (!user) return <p>No user data found.</p>;
 
-    // Get raw XP amount
+    // Get raw XP amount and format it using your function
     let rawXP = data?.xp_aggregate?.aggregate?.sum?.amount || 0;
 
     // Debugging output
@@ -91,19 +99,15 @@ function Profile() {
                 <h1>
                     {user.firstName} {user.lastName}
                 </h1>
-                <p>
-                    <strong>Username:</strong> {user.login}
-                </p>
-                <p>
-                    <strong>Email:</strong> {user.email}
-                </p>
+                <p><strong>Username:</strong> {user.login}</p>
+                <p><strong>Email:</strong> {user.email}</p>
             </div>
 
             {/* 🔹 Stats Wrapper (XP Total & Audit Ratio side by side) */}
             <div className="stats-wrapper">
                 <div className="stats-box">
                     <h2>Total XP</h2>
-                    <p>{formatBytes(rawXP)}</p>
+                    <p>{formatBytes(rawXP)}</p> {/* ✅ Uses your original XP formatting */}
                 </div>
                 <div className="audit-box">
                     <AuditRatio auditRatio={user.auditRatio} />

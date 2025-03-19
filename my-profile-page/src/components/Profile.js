@@ -68,7 +68,8 @@ function Profile() {
             console.log("🔴 No token found, redirecting to login...");
             navigate("/");
         }
-    }, [navigate]);
+    }, [token, navigate]); // ✅ Fixed: Now `token` is included in dependencies
+    
 
     const { data, loading, error } = useQuery(GET_USER_INFO, {
         skip: !token, // ✅ Prevents GraphQL query if user is not logged in

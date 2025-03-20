@@ -1,11 +1,11 @@
 export const getToken = () => {
-    return localStorage.getItem("token");
+    return sessionStorage.getItem("authToken"); // ✅ Token is now tab-specific
 };
 
 export const saveToken = (token) => {
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("authToken", token); // ✅ Token is saved only for this tab
 };
 
 export const removeToken = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("authToken"); // ✅ Token is removed when user logs out
 };

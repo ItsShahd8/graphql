@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getToken, saveToken, removeToken } from '../utils/auth';
+import { getToken , removeToken } from '../utils/auth';
 import '../styles/App.css';
 
 function Login() {
@@ -12,15 +12,16 @@ function Login() {
     // 🚀 Redirect logged-in users to `/profile`
     useEffect(() => {
         const token = getToken();
-
+    
         if (token) {
-            console.log("✅ User is already logged in, redirecting to profile...");
-            navigate('/profile'); // ✅ Prevents access to `/login` if already logged in
+            console.log("✅ User is logged in, checking validity...");
+            navigate('/profile'); 
         } else {
-            console.log("⚠️ User is NOT logged in, clearing token...");
+            console.log("🔴 No valid token found, staying on login...");
             removeToken();
         }
-    }, [navigate]);
+    }, [navigate]); 
+    
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -47,7 +48,7 @@ function Login() {
             }
 
             const token = responseText.replace(/"/g, '');
-            saveToken(token);
+            sessionStorage.setItem("authToken", token); // ✅ Saves token only for this session
             console.log("✅ Login successful, redirecting to profile...");
             navigate('/profile');
 

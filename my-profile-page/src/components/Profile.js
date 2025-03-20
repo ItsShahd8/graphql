@@ -68,8 +68,17 @@ function Profile() {
             console.log("🔴 No token found, redirecting to login...");
             navigate("/");
         }
-    }, [token, navigate]); // ✅ Fixed: Now `token` is included in dependencies
-    
+    }, [token, navigate]); // ✅ Ensures correct token check
+
+    // 🚀 Disable Webpack HMR when navigating to `/profile`
+    useEffect(() => {
+        if (import.meta.webpackHot) {
+            console.log("🔥 Disabling HMR on Profile Page...");
+            import.meta.webpackHot.dispose(() => {
+                window.location.reload(); // ✅ Forces full reload to disable HMR
+            });
+        }
+    }, []);
 
     const { data, loading, error } = useQuery(GET_USER_INFO, {
         skip: !token, // ✅ Prevents GraphQL query if user is not logged in

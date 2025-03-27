@@ -131,8 +131,8 @@ function Profile() {
     const user = data?.user?.[0];
     if (!user) return <p>No user data found.</p>;
     
-    console.log("🧪 All Transaction Paths:");
-    user.transactions.forEach(t => console.log(t.path));
+    // console.log("🧪 All Transaction Paths:");
+    // user.transactions.forEach(t => console.log(t.path));
     
     let rawXP = data?.xp_aggregate?.aggregate?.sum?.amount || 0;
 

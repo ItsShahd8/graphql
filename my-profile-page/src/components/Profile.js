@@ -8,6 +8,45 @@ import { getToken, removeToken } from '../utils/auth';
 import '../styles/Profile.css';
 
 // GraphQL Query
+// GraphQL Query
+// const GET_USER_INFO = gql`
+//     query {
+//         user {
+//             id
+//             login
+//             email
+//             firstName
+//             lastName
+//             auditRatio
+//             transactions(
+//                 where: {
+//                     type: { _eq: "xp" },
+//                     _and: [
+//                         { path: { _nlike: "%/piscine-js/%" } },
+//                         { path: { _nlike: "%/piscine-go/%" } }
+//                     ]
+//                 }
+//             ) {
+//                 amount
+//                 createdAt
+//                 path
+//             }
+//         }
+//         xp_aggregate: transaction_aggregate(
+//             where: {
+//                 type: { _eq: "xp" },
+//                 event: { path: { _eq: "/bahrain/bh-module" } }
+//             }
+//         ) {
+//             aggregate {
+//                 sum {
+//                     amount
+//                 }
+//             }
+//         }
+//     }
+// `;
+
 const GET_USER_INFO = gql`
     query {
         user {
@@ -18,15 +57,15 @@ const GET_USER_INFO = gql`
             lastName
             auditRatio
             transactions(
-                where: { 
-                    type: { _eq: "xp" }, 
-                    _or: [{ attrs: { _eq: {} } }, { attrs: { _has_key: "group" } }],
+                where: {
+                    type: { _eq: "xp" },
                     _and: [
-                        { path: { _nlike: "%/piscine-js/%" } }, 
+                        { path: { _nlike: "%/piscine-js/%" } },
                         { path: { _nlike: "%/piscine-go/%" } }
                     ]
                 }
-            ) {
+            )
+        {
                 amount
                 createdAt
                 path
@@ -46,6 +85,7 @@ const GET_USER_INFO = gql`
         }
     }
 `;
+
 
 // ✅ Keep your old XP formatting function
 function formatBytes(bytes) {
@@ -90,8 +130,10 @@ function Profile() {
 
     const user = data?.user?.[0];
     if (!user) return <p>No user data found.</p>;
-
-    // Get raw XP amount and format it using your function
+    
+    console.log("🧪 All Transaction Paths:");
+    user.transactions.forEach(t => console.log(t.path));
+    
     let rawXP = data?.xp_aggregate?.aggregate?.sum?.amount || 0;
 
     // Debugging output
